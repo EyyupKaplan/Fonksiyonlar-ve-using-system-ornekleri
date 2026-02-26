@@ -1,0 +1,49 @@
+#region  
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    { static void ekrana_yaz1()
+        {
+            Console.WriteLine("ramazan geldiii ");
+        }
+        static void ekrana_yaz2(string isim, int gun)
+        {
+            Console.WriteLine("hayırlı ramazanlar " + isim + " bugün ramazanın " + gun + ". günü ");
+        }
+        // geri değer döndüren ama paremetre almayan fonk.
+        static int topla()
+        {
+            int a = 8;
+            int b = 2;
+            return a + b;
+          
+
+        }
+        //hem geri değer döndüren  hem parametre alan fonk.
+        static int Carpma(int sayı1 , int sayı2)
+        {
+            return sayı1 * sayı2;
+        }
+        static void Main(string[] args)
+        {
+
+
+           
+            ekrana_yaz2("ahmet",6);
+            Console.WriteLine(topla());
+            Console.WriteLine(Carpma( 8 , 9));
+
+
+            Console.ReadKey();
+        }
+
+    }
+}
+#endregion
