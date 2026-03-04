@@ -1,0 +1,32 @@
+#region kulanıcıdan girilen satır ve sutun sayısıyla ıkı boyutku random elemanlı dizi oluşturma
+            Console.WriteLine("lutfen satır sayısı gırın");
+            int satır = int.Parse(Console.ReadLine());
+            Console.WriteLine("lutfen sutun sayısı gırın");
+            int sutun = int.Parse(Console.ReadLine());
+            int[,] dizi = new int[satır, sutun];
+            Random ABC = new Random();
+            for (int i = 0; i < satır; i++)
+            {
+                for (int j = 0; j < sutun; j++)
+                {
+                    dizi[i, j] = ABC.Next(0, 10);
+
+                    Console.Write(dizi[i, j] + " ");
+
+                }Console.WriteLine();
+
+            }Console.WriteLine("                                                 ");
+
+            int[,] dizi1 = new int[satır, sutun];
+
+            for (int i = 0; i < satır; i++)
+            {
+                for (int j = 0; j < sutun; j++)
+                {
+                    dizi[i, j] = ABC.Next(0, 10);
+                    Console.Write(dizi[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            #endregion
