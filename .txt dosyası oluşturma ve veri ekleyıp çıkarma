@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dosya_yolu = "C:\\Users\\Win10\\Desktop\\verilerimiz.txt";
+            StreamReader sr = new StreamReader(dosya_yolu);
+            string verim = sr.ReadToEnd();
+            sr.Close();
+
+            StreamWriter sw = new StreamWriter(dosya_yolu);
+            sw.WriteLine(verim);
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.Write(i + ".) Ad Soyad : ");
+                sw.WriteLine(i + ".) Ad Soyad : " + Console.ReadLine());
+
+                Console.Write(i + ".) İl : ");
+                sw.WriteLine(i + ".) İl : " + Console.ReadLine());
+
+                Console.Write(i + ".) Mail Adresi : ");
+                sw.WriteLine(i + ".) Mail Adresi : " + Console.ReadLine());
+
+                Console.Write(i + ".) Yaş : ");
+                sw.WriteLine(i + ".) Yaş : " + Console.ReadLine());
+
+                sw.WriteLine();
+            }
+
+            sw.Close();
+            Console.WriteLine("Veriniz Eklendi.");
+            Console.ReadKey();
+        }
+    }
+}
