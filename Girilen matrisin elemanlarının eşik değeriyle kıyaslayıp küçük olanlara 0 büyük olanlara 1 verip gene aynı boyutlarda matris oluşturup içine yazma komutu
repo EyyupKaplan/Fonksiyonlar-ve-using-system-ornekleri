@@ -1,0 +1,69 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Yol Tanımlamaları
+        string folder = @"C:\Users\Win10\Downloads\fwdalgoritmauygulama";
+        string inputPath = Path.Combine(folder, "giris1.txt");
+        string outputPath = Path.Combine(folder, "cikis1.txt");
+
+        // 2. Dosya Kontrolü
+        if (!File.Exists(inputPath))
+        {
+            Console.WriteLine("Hata: giris1.txt dosyası bulunamadı!");
+            return;
+        }
+
+        // 3. Dosyayı Satır Satır Oku
+        string[] satirlar = File.ReadAllLines(inputPath);
+
+        // İlk satırdan N (satır) ve M (sütun) değerlerini alalım
+        string[] boyutlar = satirlar[0].Split(' ');
+        int n = int.Parse(boyutlar[0]);
+        int m = int.Parse(boyutlar[1]);
+
+        // İkinci satırdan Eşik Değerini (T) alalım
+        int T = int.Parse(satirlar[1]);
+
+        // 4. Matrisi İşle ve Sonucu Hazırla
+        // Çıktı dosyasını oluşturmak için bir StreamWriter açıyoruz
+        using (StreamWriter yazar = new StreamWriter(outputPath))
+        {
+            // Çıkış dosyasının başına boyutları ve eşiği yazalım
+            yazar.WriteLine(n + " " + m);
+            yazar.WriteLine(T);
+
+            // Matris verileri 3. satırdan (index 2) başlıyor
+            for (int i = 0; i < n; i++)
+            {
+                // Mevcut satırı oku ve boşluklara göre parçala
+                string[] sayilar = satirlar[i + 2].Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                
+                string yeniSatir = "";
+
+                for (int j = 0; j < m; j++)
+                {
+                    int sayi = int.Parse(sayilar[j]);
+
+                    // Eşik kontrolü: Sayı T'den büyükse 1, değilse 0
+                    if (sayi >= T)
+                        yeniSatir += "1";
+                    else
+                        yeniSatir += "0";
+
+                    // Sayılar arasına boşluk ekle (satır sonu değilse)
+                    if (j < m - 1)
+                        yeniSatir += " ";
+                }
+
+                // Oluşan 0-1 satırını dosyaya yaz
+                yazar.WriteLine(yeniSatir);
+            }
+        }
+
+        Console.WriteLine("İşlem başarıyla tamamlandı. Sonuç 'cikis1.txt' dosyasına kaydedildi.");
+    }
+}
