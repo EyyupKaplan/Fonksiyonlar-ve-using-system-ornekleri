@@ -1,0 +1,59 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 1) Kullanıcıdan satır ve sütun sayısını al
+        Console.Write("Satır sayısını giriniz: ");
+        int rows = int.Parse(Console.ReadLine());
+
+        Console.Write("Sütun sayısını giriniz: ");
+        int cols = int.Parse(Console.ReadLine());
+
+        // 2) A matrisini oluştur ve kullanıcıdan değerleri al
+        int[,] A = new int[rows, cols];
+        Console.WriteLine("\nMatris A'nın elemanlarını giriniz:");
+
+        for (int i = 0; i < rows; i++)
+        {
+            Console.Write($"Satır {i + 1} (aralarında boşluk bırakarak {cols} adet tam sayı): ");
+            string[] parts = Console.ReadLine().Trim().Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length != cols)
+            {
+                Console.WriteLine("Hata: Girilen sayı adedi sütun sayısı ile uyuşmuyor. Programı yeniden başlatın.");
+                return;
+            }
+
+            for (int j = 0; j < cols; j++)
+            {
+                A[i, j] = int.Parse(parts[j]);
+            }
+        }
+
+        // 3) B dizisini oluştur ve her satırın ortalamasını hesapla
+        int[] B = new int[rows];
+
+        for (int i = 0; i < rows; i++)
+        {
+            int sum = 0;
+
+            for (int j = 0; j < cols; j++)
+            {
+                sum += A[i, j];
+            }
+
+            // Tamsayı bölmesi yapılır
+            B[i] = sum / cols;
+        }
+
+        // 4) Sonuçları ekrana yazdır
+        Console.WriteLine("\nHer satırın ortalamaları (B dizisi):");
+
+        for (int i = 0; i < rows; i++)
+        {
+            Console.WriteLine($"B[{i}] = {B[i]}");
+        }
+    }
+}
